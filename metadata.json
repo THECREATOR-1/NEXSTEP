@@ -1,6 +1,0 @@
-{
-  "name": "NEXSTEP",
-  "description": "Your next step, backed by intelligence. AI-powered career platform.",
-  "requestFramePermissions": ["microphone"],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
