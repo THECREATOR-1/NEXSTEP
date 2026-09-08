@@ -5,7 +5,7 @@ import { PublicNavbar } from '../../components/layout/PublicNavbar';
 import { TrueFocus } from '../../components/brand/TrueFocus';
 import { AlertCircle } from 'lucide-react';
 import { signInWithEmail, signInWithGoogle } from '../../services/firebase/auth';
-import { getFriendlyFirebaseErrorMessage } from '../../utils/firebaseErrors';
+import { getFriendlyErrorMessage } from '../../utils/firebaseErrors';
 
 export default function LoginPage() {
   const { isConfigured } = useAuth();
@@ -29,7 +29,7 @@ export default function LoginPage() {
       // AuthContext will automatically redirect due to onAuthStateChanged -> user state update
     } catch (err: any) {
       console.error(err);
-      setError(getFriendlyFirebaseErrorMessage(err));
+      setError(getFriendlyErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -43,7 +43,7 @@ export default function LoginPage() {
       // AuthContext will handle state update and AppRoutes will handle redirection
     } catch (err: any) {
       console.error(err);
-      setError(getFriendlyFirebaseErrorMessage(err));
+      setError(getFriendlyErrorMessage(err));
       setLoading(false);
     }
   };

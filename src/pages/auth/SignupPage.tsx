@@ -5,7 +5,7 @@ import { PublicNavbar } from '../../components/layout/PublicNavbar';
 import { TrueFocus } from '../../components/brand/TrueFocus';
 import { AlertCircle } from 'lucide-react';
 import { signUpWithEmail, signInWithGoogle } from '../../services/firebase/auth';
-import { getFriendlyFirebaseErrorMessage } from '../../utils/firebaseErrors';
+import { getFriendlyErrorMessage } from '../../utils/firebaseErrors';
 
 export default function SignupPage() {
   const { isConfigured } = useAuth();
@@ -45,7 +45,7 @@ export default function SignupPage() {
       navigate('/auth/account-type');
     } catch (err: any) {
       console.error(err);
-      setError(getFriendlyFirebaseErrorMessage(err));
+      setError(getFriendlyErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -59,7 +59,7 @@ export default function SignupPage() {
       navigate('/auth/account-type');
     } catch (err: any) {
       console.error(err);
-      setError(getFriendlyFirebaseErrorMessage(err));
+      setError(getFriendlyErrorMessage(err));
       setLoading(false);
     }
   };

@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { PublicNavbar } from '../../components/layout/PublicNavbar';
 import { TrueFocus } from '../../components/brand/TrueFocus';
-import { GraduationCap, School } from 'lucide-react';
+import { GraduationCap, School, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { db } from '../../services/firebase/config';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function AccountTypeSelection() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const [isUpdating, setIsUpdating] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     // If we already have an account type, we shouldn't be here
@@ -27,18 +28,21 @@ export default function AccountTypeSelection() {
     if (isUpdating) return;
     
     setIsUpdating(true);
+    setError('');
     try {
       const userRef = doc(db!, 'users', user.uid);
-      await updateDoc(userRef, {
+      
+      // Use setDoc with merge:true instead of updateDoc to ensure it creates the doc if missing
+      await setDoc(userRef, {
         accountType: type,
-        updatedAt: new Date() // Ideally serverTimestamp() but Date() is fine for client side immediate update
-      });
+        updatedAt: serverTimestamp()
+      }, { merge: true });
+      
       // Context might take a moment to refresh, so we force navigation here to onboarding
       navigate(`/onboarding/${type}`);
-      // In a real app we might reload context here, but reloading the page is a simple trick, or just let context catch up.
-      window.location.href = `/onboarding/${type}`;
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error updating account type:', err);
+      setError(err.message || 'Failed to update account type. Please try again.');
       setIsUpdating(false);
     }
   };
@@ -63,9 +67,16 @@ export default function AccountTypeSelection() {
 
         <div className="w-full max-w-2xl text-center">
           <h2 className="text-3xl font-bold mb-4">I am a...</h2>
-          <p className="text-text-muted mb-12">
+          <p className="text-text-muted mb-8">
             Select your account type to personalize your NEXSTEP experience.
           </p>
+
+          {error && (
+            <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 flex items-center justify-center">
+              <AlertCircle className="w-5 h-5 mr-2" />
+              {error}
+            </div>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <button

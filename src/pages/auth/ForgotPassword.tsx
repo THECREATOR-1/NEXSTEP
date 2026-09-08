@@ -5,7 +5,7 @@ import { TrueFocus } from '../../components/brand/TrueFocus';
 import { useAuth } from '../../context/AuthContext';
 import { sendPasswordReset } from '../../services/firebase/auth';
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
-import { getFriendlyFirebaseErrorMessage } from '../../utils/firebaseErrors';
+import { getFriendlyErrorMessage } from '../../utils/firebaseErrors';
 
 export default function ForgotPassword() {
   const { isConfigured } = useAuth();
@@ -29,7 +29,7 @@ export default function ForgotPassword() {
       setSuccess(true);
     } catch (err: any) {
       console.error(err);
-      setError(getFriendlyFirebaseErrorMessage(err));
+      setError(getFriendlyErrorMessage(err));
     } finally {
       setLoading(false);
     }
