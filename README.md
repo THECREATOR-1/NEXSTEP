@@ -1,37 +1,20 @@
-# NEXSTEP
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-NEXSTEP is a modern student platform for tracking academic progress, college planning, and career development.
+# Run and deploy your AI Studio app
 
-## Setup
+This contains everything you need to run your app locally.
 
-1. Copy `.env.example` to `.env`
-2. Run `npm install`
-3. Run `npm run dev`
+View your app in AI Studio: https://ai.studio/apps/d38d55f4-a418-4118-ab14-21c05440811d
 
-## Firebase Configuration
+## Run Locally
 
-To enable real authentication and database features, you must supply Firebase credentials in your `.env` file.
-You can get these values from the Firebase Console -> Project Settings -> General -> Your apps -> SDK setup and configuration.
+**Prerequisites:**  Node.js
 
-```env
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-```
 
-These values are required to use the real Firebase Auth SDK and Firestore database. Without them, the application will display a "Configuration Required" message on the login screen.
-
-### Authorized Domains
-
-For Google Sign-In and standard Authentication to work in the AI Studio preview environment, you MUST add the preview domains to your Firebase Authorized Domains list:
-
-1. Go to Firebase Console -> Authentication -> Settings -> Authorized domains
-2. Click "Add domain"
-3. Add the following Google AI Studio preview hostnames:
-   - `ais-dev-zskbby3ix6ylm3mp5gs3jl-416085644191.asia-east1.run.app`
-   - `ais-pre-zskbby3ix6ylm3mp5gs3jl-416085644191.asia-east1.run.app`
-
-If you encounter the `auth/unauthorized-domain` error during login, this step was likely missed.
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

@@ -1,0 +1,7 @@
+{
+  "name": "NEXSTEP",
+  "description": "From choosing the right career to proving you're ready for it — career discovery, college intelligence, skill passport, and interview arena.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
