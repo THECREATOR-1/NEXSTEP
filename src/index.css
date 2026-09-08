@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background-light: #F6F7F2;
+  --color-surface-light: #FFFFFF;
+  --color-surface-secondary-light: #EEF1EB;
+  --color-text-light: #101413;
+  --color-text-muted-light: #68716D;
+  --color-border-light: #DDE2DC;
+  
+  --color-background-dark: #0D1110;
+  --color-surface-dark: #151A18;
+  --color-surface-secondary-dark: #1B211E;
+  --color-text-dark: #F4F7F2;
+  --color-text-muted-dark: #9AA49F;
+  --color-border-dark: #29312D;
+
+  --color-accent: #C7F36B;
+}
+
+@layer base {
+  :root {
+    --background: var(--color-background-light);
+    --surface: var(--color-surface-light);
+    --surface-secondary: var(--color-surface-secondary-light);
+    --text: var(--color-text-light);
+    --text-muted: var(--color-text-muted-light);
+    --border: var(--color-border-light);
+    --accent: var(--color-accent);
+  }
+
+  .dark {
+    --background: var(--color-background-dark);
+    --surface: var(--color-surface-dark);
+    --surface-secondary: var(--color-surface-secondary-dark);
+    --text: var(--color-text-dark);
+    --text-muted: var(--color-text-muted-dark);
+    --border: var(--color-border-dark);
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
